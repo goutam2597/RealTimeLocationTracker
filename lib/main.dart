@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-// Api key: AIzaSyCHXtVv4TmbFB1iW26xv3N_zYq4QOh8s1A
 
 void main() {
   runApp(const MyApp());
