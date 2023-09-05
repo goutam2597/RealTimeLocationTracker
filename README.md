@@ -1,16 +1,4 @@
 # flutter_location_map
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screenshot_20230905_205506](https://github.com/goutam2597/RealTimeLocationTracker/assets/134217195/05b83371-de92-4ff2-87de-d17c9e17545a)
+![Screenshot_20230905_205541](https://github.com/goutam2597/RealTimeLocationTracker/assets/134217195/9d8f692c-e596-4c5d-9714-e24a790bee81)
