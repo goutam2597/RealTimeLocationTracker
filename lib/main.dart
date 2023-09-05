@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+// Api key: AIzaSyCHXtVv4TmbFB1iW26xv3N_zYq4QOh8s1A
+
 void main() {
   runApp(const MyApp());
 }
@@ -28,7 +30,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final Set<Marker> _markers = {};
-  final List<LatLng> _polylineCoordinates = [const LatLng(37.42235769874641, -122.08476707421134)];
   late GoogleMapController _mapController;
   late LatLng _userLocation = const LatLng(0, 0);
   late Timer _locationUpdateTimer;
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _getCurrentLocation();
-    _locationUpdateTimer = Timer.periodic(const Duration(seconds: 10), (timer) {
+    _locationUpdateTimer = Timer.periodic(Duration(seconds: 10), (timer) {
       _getCurrentLocation();
     });
   }
@@ -54,7 +55,6 @@ class _HomeScreenState extends State<HomeScreen> {
           desiredAccuracy: LocationAccuracy.high);
       setState(() {
         _userLocation = LatLng(position.latitude, position.longitude);
-        _polylineCoordinates.add(_userLocation); // Add current location to polyline
       });
       _markers.clear();
 
@@ -62,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
         markerId: const MarkerId('userLocation'),
         position: _userLocation,
         infoWindow: InfoWindow(
-          title: 'My Current Location',
+          title: 'Your Location',
           snippet: 'Lat: ${position.latitude}, Long: ${position.longitude}',
         ),
       ));
@@ -77,6 +77,9 @@ class _HomeScreenState extends State<HomeScreen> {
     _mapController.animateCamera(CameraUpdate.newLatLngZoom(_userLocation, 17.0));
   }
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,16 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: GoogleMap(
         markers: _markers,
-        polylines: {
-          Polyline(
-            polylineId: const PolylineId('userRoute'),
-            color: Colors.blue,
-            points: _polylineCoordinates,
-            width: 5,
-          ),
-        },
-        onMapCreated: (controller) {
-          _mapController = controller;
+        onMapCreated: (controller){
+          _mapController=controller;
         },
         zoomControlsEnabled: false,
         initialCameraPosition: CameraPosition(
@@ -103,9 +98,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _animateToUserLocation,
+        onPressed: _animateToUserLocation, // Call the zoom function
         child: const Icon(Icons.location_searching),
       ),
+
     );
   }
 }
